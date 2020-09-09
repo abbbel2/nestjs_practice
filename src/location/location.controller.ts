@@ -14,7 +14,7 @@ export class LocationController {
   @Get('/search')
   async search(@Query() query): Promise<any> {
     const data = this.locationService.findAll();
-    let result = [];
+    const result = [];
     (await data).forEach(function(d) {
       if (d.timestamp.split(' ')[0] === query.date) {
         result.push(d);
@@ -25,6 +25,7 @@ export class LocationController {
 
   @Post('/save')
   async save(@Body() body: Location): Promise<any> {
-    return this.locationService.create(body);
+    const res = await this.locationService.create(body);
+    return res;
   }
 }

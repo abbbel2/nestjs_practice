@@ -3,11 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { LocationModule } from './location/location.module';
 import { Location } from './entity/location.entity';
+import { join } from 'path';
 
 @Module({
   imports: [
     LocationModule,
-    //  TypeOrmModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -15,7 +15,7 @@ import { Location } from './entity/location.entity';
       username: 'root',
       password: '',
       database: 'location',
-      entities: [Location],
+      entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
     }),
   ],
