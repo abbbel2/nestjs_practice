@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { LocationModule } from './location/location.module';
-import { Location } from './entity/location.entity';
 import { join } from 'path';
 
 @Module({

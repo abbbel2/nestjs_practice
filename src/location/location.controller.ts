@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query, Body } from '@nestjs/common';
+import { Controller, Get, Post, Query, Body, Param } from '@nestjs/common';
 import { LocationService } from './location.service';
 import { Location } from '../entity/location.entity';
 
@@ -21,6 +21,11 @@ export class LocationController {
       }
     });
     return result;
+  }
+
+  @Get('/:id')
+  async findOne(@Param('id') id): Promise<any> {
+    return this.locationService.findById(id);
   }
 
   @Post('/save')
